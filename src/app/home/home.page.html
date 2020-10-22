@@ -1,0 +1,21 @@
+// home.page.html
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic Calendar Examples
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+
+    <ion-calendar [(ngModel)]="date"
+      (onChange)="onChange($event)"
+      [type]="type"
+      [format]="'YYYY-MM-DD'">
+    </ion-calendar>
+
+  </div>
+</ion-content>
