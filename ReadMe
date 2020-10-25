@@ -1,0 +1,10 @@
+monitor vitals an place them in a calender format..
+click on the date and it pop-up your vitals on that day
+it display either green or red on the day to indicate if vitals were normal on that day 
+sign-in
+sign-up
+sign-out on toolbar
+
+if vitals were normal small green circle under day
+//
+if vitals were abnormal small red circle under the day

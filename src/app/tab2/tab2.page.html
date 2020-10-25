@@ -1,7 +1,8 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-icon name="log-out-outline" size="large" class="log"></ion-icon>
     <ion-title>
-      Tab 2
+      Vitals
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +10,24 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Vitals</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+ <ion-card *ngFor="let vital of vitals">
+      <ion-button class="create">
+        <ion-icon name="create-outline" size="large"></ion-icon>
+      </ion-button>
+      <ion-button (click)="showConfirm(vital.id);" class="trash">
+        <ion-icon name="trash-outline" size="large"></ion-icon>
+      </ion-button>
+    <ion-card-header><strong>{{vital.created_at | date: 'M/d/yy, h:mm a'}}</strong></ion-card-header>
+    <hr>
+    <ion-card-content>{{vital.systolic}}/{{vital.diastolic}} -bp</ion-card-content>
+    <ion-card-content>{{vital.hr}} -hr</ion-card-content>
+    <ion-card-content>{{vital.oxygen}} -oxygen</ion-card-content>
+    <ion-card-content>{{vital.temp}}&#8457;</ion-card-content>
+    <ion-card-content>{{vital.weight}} lbs -weight</ion-card-content>
+ </ion-card>
+
 </ion-content>
