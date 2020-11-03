@@ -1,9 +1,9 @@
-ion-button.trash {
-    margin-left: 88%;
-}
-
-ion-button.create {
-    margin-left: 10px;
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    .trash {
+        justify-content: flex-end;
+    }
 }
 
 ion-icon {

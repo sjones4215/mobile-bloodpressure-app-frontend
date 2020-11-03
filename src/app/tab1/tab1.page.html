@@ -17,9 +17,7 @@
     <div class="ion-padding">
   
       <ion-calendar [(ngModel)]="date"
-        onchange="onChange($event)"
         [options]="options"
-        (onChange)="onChange($event);"
         (select)="presentPopover();"
         [type]="type"
         [format]="'YYYY-MM-DD'">

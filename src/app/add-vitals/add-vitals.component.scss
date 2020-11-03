@@ -1,0 +1,12 @@
+.icons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-content {
+    display: flex;
+    justify-content:space-between;
+    .diastolic {
+        float: inline-start;
+    }
+}
