@@ -1,6 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { CalendarComponentOptions } from 'ion2-calendar';
+import { CalendarComponentOptions, CalendarComponentPayloadTypes } from 'ion2-calendar';
+
 import { Vitals } from '../models/vitals';
 import { PopoverComponent } from '../popover/popover.component';
 import { VitalsService } from '../services/vitals.service';
@@ -11,21 +13,20 @@ import { VitalsService } from '../services/vitals.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit {
+export class Tab1Page {
   normal: true
-  date: string;
+  date: Date;
   type: 'string';
   vitals: Vitals[] = []
-  options: CalendarComponentOptions = {
-    from: new Date(1),
-    daysConfig: [ 
-  ],
-};
+  abnormalVitals: Vitals[] = []
+  options: CalendarComponentOptions 
+  newOption: CalendarComponentPayloadTypes
   
   constructor(public popoverController: PopoverController, private vitalService: VitalsService) {}
   
-  ngOnInit() {
+  ionViewWillEnter() {
     this.retrieveAllVitals()
+    this.vitalsSearch();
   }
 
 
@@ -33,34 +34,44 @@ export class Tab1Page implements OnInit {
   this.vitalService.getAllVitals().subscribe(data => {
       if (data) {
       this.vitals = data.vitals
-      this.vitalsSearch();   
+      this.vitalsSearch();
     }
   })
 }
 
 vitalsSearch() {
-  this.vitals.forEach(v => {
+  this.options = {
+    from: new Date(1),
+    showToggleButtons: false,
+    daysConfig: [],
+    color: 'dark'
+  };
+ this.vitals.forEach(v => {
   if (v.systolic > 130 || v.systolic < 90 ||  
       v.diastolic > 80 || v.diastolic > 99 ||
       v.hr < 75 || v.hr > 120 ||
       v.oxygen < 80 || 
       v.temp > 99.0 || v.temp < 96.5) {
-      this.options.daysConfig.push({
-        date: new Date(v.created_at),
-        cssClass: 'abnormal-vitals'
-          })
+        v.normal = false
+        this.options.daysConfig.push({
+          date: new Date(v.created_at),
+          cssClass: 'abnormal-vitals',
+        })
         } else {
-          this.options.daysConfig.push({
+        if (v.normal = true)
+        this.options.daysConfig.push({
             date: new Date(v.created_at),
-            cssClass: 'my-cal'
-          })
-        }
+            cssClass: 'my-cal',
+            })
+          }
+        this.sortVitals();})
       }
-    )
-  }
 
-  onChange($event) {
-    console.log($event)
+
+  
+
+  onChange() {
+    this.vitalsSearch()
   }
 
   async presentPopover(ev: any) {
@@ -72,7 +83,14 @@ vitalsSearch() {
     });
     return await popover.present();
   }
+
+  sortVitals() {
+    this.options.daysConfig.sort((a, b) => {
+      if (a.cssClass < b.cssClass) return -1;
+      else if (a.cssClass > b.cssClass) return 1;
+      else return 0;
+    });
+  }
 }
 
 
-  

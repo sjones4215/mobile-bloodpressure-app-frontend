@@ -11,21 +11,28 @@ import { VitalsService } from '../services/vitals.service';
 })
 export class Tab2Page {
   vitals: Vitals[] = []
+  vitalsByDate: Vitals[] = []
+  date = new Date(1)
   constructor(private vitalService: VitalsService, public alertCtrl: AlertController) {}
 
   ionViewWillEnter() {
     this.retrieveAllVitals();
+    this.vitals.filter(v => {
+      v.created_at.getMonth === this.date.getMonth
+      debugger
+      this.vitalsByDate.push(v)
+    });
   }
 
   retrieveAllVitals() {
   this.vitalService.getAllVitals().subscribe(data => {
       if (data) {
-        console.log(data)
         this.vitals = data.vitals
       }
     })
   }
 
+  
   deleteVitals(id:number) {
 
     this.vitalService.deleteVital(id).subscribe()
@@ -55,5 +62,4 @@ export class Tab2Page {
     });  
     await confirm.present();  
   }  
-}  
-
+}

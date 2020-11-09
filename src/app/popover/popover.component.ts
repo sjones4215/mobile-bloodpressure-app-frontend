@@ -12,10 +12,4 @@ export class PopoverComponent implements OnInit {
   constructor( private vitalService: VitalsService) { }
 
   ngOnInit() {
-    this.vitalService.getAllVitals().subscribe(data => {
-      if (data) {
-      this.vitals = data.vitals
-      }
-    })
   }
-}

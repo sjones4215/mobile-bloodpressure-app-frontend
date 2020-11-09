@@ -1,3 +1,5 @@
+
+
 export class Vitals {
     id: number
     systolic: number
@@ -6,5 +8,6 @@ export class Vitals {
     weight: number
     oxygen: number
     temp: number
-    created_at: string
+    created_at: Date
+    normal: boolean = true
 }

@@ -18,6 +18,7 @@
   
       <ion-calendar [(ngModel)]="date"
         [options]="options"
+        (change)="retrieveAllVitals();"
         (select)="presentPopover();"
         [type]="type"
         [format]="'YYYY-MM-DD'">
