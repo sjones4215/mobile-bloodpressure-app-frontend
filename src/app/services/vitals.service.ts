@@ -18,4 +18,8 @@ export class VitalsService {
   deleteVital(id: number) {
     return this.http.delete(this.baseUrl + 'vitals/destroy?id=' + id)
   }
+
+  vitalsByMonth() {
+    
+  }
 }

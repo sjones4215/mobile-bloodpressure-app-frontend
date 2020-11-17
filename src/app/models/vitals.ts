@@ -8,6 +8,10 @@ export class Vitals {
     weight: number
     oxygen: number
     temp: number
-    created_at: Date
+    created_at: string
     normal: boolean = true
+
+    getCreatedAtDate() {
+        return new Date(this.created_at)
+    }
 }

@@ -17,17 +17,14 @@ export class Tab2Page {
 
   ionViewWillEnter() {
     this.retrieveAllVitals();
-    this.vitals.filter(v => {
-      v.created_at.getMonth === this.date.getMonth
-      debugger
-      this.vitalsByDate.push(v)
-    });
+
   }
 
   retrieveAllVitals() {
   this.vitalService.getAllVitals().subscribe(data => {
       if (data) {
         this.vitals = data.vitals
+        console.log(data)
       }
     })
   }

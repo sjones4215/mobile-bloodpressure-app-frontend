@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { CalendarComponentOptions, CalendarComponentPayloadTypes } from 'ion2-calendar';
 
@@ -64,15 +64,16 @@ vitalsSearch() {
             cssClass: 'my-cal',
             })
           }
-        this.sortVitals();})
-      }
+        this.sortVitals();
+      })
+    }
 
 
   
 
-  onChange() {
-    this.vitalsSearch()
-  }
+  // onChange() {
+  //   this.vitalsSearch()
+  // }
 
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
