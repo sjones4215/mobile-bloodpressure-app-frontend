@@ -1,12 +1,23 @@
-.icons {
+.icon {
     display: flex;
     justify-content: flex-end;
 }
 
-.modal-content {
+ion-list {
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+h3 {
+    text-align: center;
+    color: rgb(50, 50, 255);
+}
+
+ion-button{
     display: flex;
-    justify-content:space-between;
-    .diastolic {
-        float: inline-start;
-    }
+    justify-content: space-between;
+    margin-right: 10px;
+    margin-left: 10px;
 }

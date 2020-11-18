@@ -53,13 +53,11 @@ vitalsSearch() {
       v.hr < 75 || v.hr > 120 ||
       v.oxygen < 80 || 
       v.temp > 99.0 || v.temp < 96.5) {
-        v.normal = false
         this.options.daysConfig.push({
           date: new Date(v.created_at),
           cssClass: 'abnormal-vitals',
         })
         } else {
-        if (v.normal = true)
         this.options.daysConfig.push({
             date: new Date(v.created_at),
             cssClass: 'my-cal',
@@ -95,7 +93,7 @@ vitalsSearch() {
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       cssClass: 'loading',
-      message: 'Please wait...',
+      message: 'Fetching vitals...',
       duration: 200,
       backdropDismiss: false,
       animated: false

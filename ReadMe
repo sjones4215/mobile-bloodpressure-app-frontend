@@ -8,3 +8,11 @@ sign-out on toolbar
 if vitals were normal small green circle under day
 //
 if vitals were abnormal small red circle under the day
+
+#1 sign-in / sign-up with auth guards and formcontrols in place and working
+
+#2 create vitals in app and have the popup when create vitals are successful and and error when that is not the case.
+
+#3 on tab 2 ability to sort via month day or year 
+
+#4 Ability to refresh using ionic refresher built in
