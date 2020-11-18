@@ -1,14 +1,3 @@
-monitor vitals an place them in a calender format..
-click on the date and it pop-up your vitals on that day
-it display either green or red on the day to indicate if vitals were normal on that day 
-sign-in
-sign-up
-sign-out on toolbar
-
-if vitals were normal small green circle under day
-//
-if vitals were abnormal small red circle under the day
-
 #1 sign-in / sign-up with auth guards and formcontrols in place and working
 
 #2 create vitals in app and have the popup when create vitals are successful and and error when that is not the case.
@@ -16,3 +5,5 @@ if vitals were abnormal small red circle under the day
 #3 on tab 2 ability to sort via month day or year 
 
 #4 Ability to refresh using ionic refresher built in
+
+#5 Add a green star next to days where vitals are normal.
