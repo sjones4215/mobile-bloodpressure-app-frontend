@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PopoverComponent } from './popover/popover.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -20,7 +21,8 @@ import { PopoverComponent } from './popover/popover.component';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule,],
+    HttpClientModule,
+    BrowserAnimationsModule,],
     
   providers: [
     StatusBar,

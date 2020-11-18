@@ -19,7 +19,7 @@
       <ion-calendar [(ngModel)]="date"
         [options]="options"
         (change)="retrieveAllVitals();"
-        (select)="presentPopover();"
+        (select)="presentLoadingWithOptions();presentPopover($event);"
         [type]="type"
         [format]="'YYYY-MM-DD'">
       </ion-calendar>

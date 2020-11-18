@@ -1,11 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, Output } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { IonBackdrop, PopoverController } from '@ionic/angular';
 import { CalendarComponentOptions, CalendarComponentPayloadTypes } from 'ion2-calendar';
 
 import { Vitals } from '../models/vitals';
 import { PopoverComponent } from '../popover/popover.component';
 import { VitalsService } from '../services/vitals.service';
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class Tab1Page {
   options: CalendarComponentOptions 
   newOption: CalendarComponentPayloadTypes
   
-  constructor(public popoverController: PopoverController, private vitalService: VitalsService) {}
+  constructor(public popoverController: PopoverController, private vitalService: VitalsService, private loadingController: LoadingController) {}
   
   ionViewWillEnter() {
     this.retrieveAllVitals()
@@ -76,15 +77,38 @@ vitalsSearch() {
   // }
 
   async presentPopover(ev: any) {
+    this.presentLoadingWithOptions()
     const popover = await this.popoverController.create({
       component: PopoverComponent,
       cssClass: 'my-custom-class',
       event: ev,
-      translucent: true
+      translucent: true,
+      animated: false,
+      componentProps: {
+        dateSelected: new Date(ev.time)
+      } 
     });
     return await popover.present();
   }
 
+  
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      cssClass: 'loading',
+      message: 'Please wait...',
+      duration: 200,
+      backdropDismiss: false,
+      animated: false
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+  
+  
+  
+  
   sortVitals() {
     this.options.daysConfig.sort((a, b) => {
       if (a.cssClass < b.cssClass) return -1;

@@ -38,3 +38,21 @@ ion-modal.fullscreen {
   .abnormal-vitals {
     background-color: red !important;
   }
+
+ion-popover {
+  div.popover-content {
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+  }
+}
+
+.loading-wrapper {
+  height: 100%;
+  width: 100%;
+  padding-left: 60px !important;
+  padding-right: 60px !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
+  justify-content: center;
+}

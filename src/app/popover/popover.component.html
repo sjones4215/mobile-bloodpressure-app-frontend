@@ -1,5 +1,9 @@
-<ion-content *ngFor="let vital of todaysVitals">    
-    <ion-card>
+
+<ion-content>
+
+  
+    <ion-card *ngFor="let vital of todaysVitals">
+
         <ion-card-header><strong>{{vital.created_at | date: 'M/d/yy, h:mm a'}}</strong></ion-card-header>
         <hr>
         <ion-card-content>{{vital.systolic}}/{{vital.diastolic}} -bp</ion-card-content>
@@ -7,5 +11,17 @@
         <ion-card-content>{{vital.oxygen}} -oxygen</ion-card-content>
         <ion-card-content>{{vital.temp}}&#8457;</ion-card-content>
         <ion-card-content>{{vital.weight}} lbs -weight</ion-card-content>
+
     </ion-card>
+    
+    <ion-content *ngIf="todaysVitals.length === 0">
+        
+        <p>
+            No Vitals on this day
+        </p>
+
+    </ion-content> 
+    
+ 
 </ion-content>
+

@@ -23,15 +23,13 @@ export class Tab2Page {
   retrieveAllVitals() {
   this.vitalService.getAllVitals().subscribe(data => {
       if (data) {
-        this.vitals = data.vitals
-        console.log(data)
+        this.vitals = data.vitals.map(x => Object.assign(new Vitals(), x))
       }
     })
   }
 
   
   deleteVitals(id:number) {
-
     this.vitalService.deleteVital(id).subscribe()
   }
 
