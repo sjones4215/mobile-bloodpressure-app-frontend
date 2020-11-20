@@ -1,17 +1,25 @@
-<ion-app>
-  <ion-card>
-    <ion-card-content>
-      <h3>Please Sign-In</h3>
+
+<ion-content>
+    
+  <form [formGroup] = "formGroup">
+    
+    <ion-card>
+      <ion-card-content>
+        <h3>Please Sign-In</h3>
         <ion-item>
           <ion-label>Email</ion-label>
-          <ion-input></ion-input>
+          <ion-input name="email" type="text" class="email" id="email" aria-describedby="emailHelp" formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Password</ion-label>
-          <ion-input></ion-input>
+          <ion-input name="password" type="text" class="password" id="password" aria-describedby="passwordHelp" formControlName="password"></ion-input>
         </ion-item>
         <ion-card-subtitle>If you do not have an accound please <a routerLink="/sign-up">sign-up</a></ion-card-subtitle>
-          <ion-button expand="block" color="primary"> Submit </ion-button>
-    </ion-card-content>
-  </ion-card>
-</ion-app>
+        <ion-button expand="block" color="primary" (click)="signIn()"> Submit </ion-button>
+      </ion-card-content>
+    </ion-card>
+  
+  </form>
+    
+</ion-content>
+  

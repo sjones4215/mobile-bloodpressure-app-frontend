@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { PopoverComponent } from './popover/popover.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddVitalsComponent } from './add-vitals/add-vitals.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignInPage } from './sign-in/sign-in.page';
 
 
 
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,],
     
   providers: [
