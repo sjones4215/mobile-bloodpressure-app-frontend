@@ -1,10 +1,12 @@
 <ion-header [translucent]="true">
+  <div class="header">
   <ion-toolbar color="primary">
-    <ion-icon name="log-out-outline" size="large" class="log"></ion-icon>
+    <ion-icon name="log-out-outline" size="large" class="log" (click)="signOut()"></ion-icon>
     <ion-title>
       Vitals
     </ion-title>
   </ion-toolbar>
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true">

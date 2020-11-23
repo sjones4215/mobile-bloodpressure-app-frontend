@@ -7,6 +7,8 @@ import { Vitals } from '../models/vitals';
 import { PopoverComponent } from '../popover/popover.component';
 import { VitalsService } from '../services/vitals.service';
 import { LoadingController } from '@ionic/angular';
+import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,9 +25,15 @@ export class Tab1Page {
   options: CalendarComponentOptions 
   newOption: CalendarComponentPayloadTypes
   
-  constructor(public popoverController: PopoverController, private vitalService: VitalsService, private loadingController: LoadingController) {}
+  constructor(
+    public popoverController: PopoverController, 
+    private vitalService: VitalsService, 
+    private loadingController: LoadingController, 
+    private localStorageService: LocalStorageService, 
+    private router: Router) {}
   
   ionViewWillEnter() {
+    
     this.retrieveAllVitals()
     this.vitalsSearch();
   }
@@ -113,6 +121,11 @@ vitalsSearch() {
       else if (a.cssClass > b.cssClass) return 1;
       else return 0;
     });
+  }
+
+  signOut() {
+    this.localStorageService.logoutUser();
+    this.router.navigate([''])
   }
 }
 

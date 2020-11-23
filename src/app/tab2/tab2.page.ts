@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { Vitals } from '../models/vitals';
+import { LocalStorageService } from '../services/local-storage.service';
 import { VitalsService } from '../services/vitals.service';
 
 @Component({
@@ -13,11 +15,10 @@ export class Tab2Page {
   vitals: Vitals[] = []
   vitalsByDate: Vitals[] = []
   date = new Date(1)
-  constructor(private vitalService: VitalsService, public alertCtrl: AlertController) {}
+  constructor(private vitalService: VitalsService, public alertCtrl: AlertController, private localStorageService: LocalStorageService, private router: Router) {}
 
   ionViewWillEnter() {
     this.retrieveAllVitals();
-
   }
 
   retrieveAllVitals() {
@@ -56,5 +57,10 @@ export class Tab2Page {
       ]  
     });  
     await confirm.present();  
-  }  
+  } 
+
+  signOut() {
+    this.localStorageService.logoutUser();
+    this.router.navigate([''])
+  }
 }

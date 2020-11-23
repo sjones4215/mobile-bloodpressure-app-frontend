@@ -12,7 +12,8 @@
         </ion-item>
         <ion-item>
           <ion-label>Password</ion-label>
-          <ion-input name="password" type="text" class="password" id="password" aria-describedby="passwordHelp" formControlName="password"></ion-input>
+          <ion-input [type]="passwordType" clearOnEdit="false" class="password" id="password" aria-describedby="passwordHelp" formControlName="password"></ion-input>
+          <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
         </ion-item>
         <ion-card-subtitle>If you do not have an accound please <a routerLink="/sign-up">sign-up</a></ion-card-subtitle>
         <ion-button expand="block" color="primary" (click)="signIn()"> Submit </ion-button>
