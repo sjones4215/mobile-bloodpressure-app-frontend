@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Vitals } from '../models/vitals';
 import { LocalStorageService } from '../services/local-storage.service';
 import { VitalsService } from '../services/vitals.service';
@@ -12,7 +12,11 @@ import { VitalsService } from '../services/vitals.service';
 })
 export class AddVitalsComponent implements OnInit {
   newVitals: Vitals = new Vitals();
-  constructor(public modalCtrl: ModalController, private vitalService: VitalsService, private localStorageService: LocalStorageService, private router: Router) { }
+  constructor(
+    public modalCtrl: ModalController, 
+    private vitalService: VitalsService, 
+    private toastCtrl: ToastController
+  ) { }
 
   ngOnInit() {}
 
@@ -25,14 +29,18 @@ export class AddVitalsComponent implements OnInit {
   }
 
   saveVitals() {
-    this.vitalService.createVitals(this.newVitals).subscribe(data => {
-      if (data) {
-        this.router.navigate(['/tabs/tab1'])
-      }
-    })
+    this.vitalService.createVitals(this.newVitals).subscribe()
+    this.presentToast()
     }
+
+    async presentToast() {
+      const toast = await this.toastCtrl.create({
+        message: 'Vitals have been saved.',
+        position: 'top',
+        duration: 2000
+      });
+      toast.present();
+    }
+
+    
   }
-
-
-
-

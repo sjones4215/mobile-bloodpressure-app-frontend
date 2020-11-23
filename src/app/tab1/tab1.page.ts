@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, Output } from '@angular/core';
-import { IonBackdrop, PopoverController } from '@ionic/angular';
+import { AlertController, IonBackdrop, PopoverController, ToastController } from '@ionic/angular';
 import { CalendarComponentOptions, CalendarComponentPayloadTypes } from 'ion2-calendar';
 
 import { Vitals } from '../models/vitals';
@@ -30,6 +30,8 @@ export class Tab1Page {
     private vitalService: VitalsService, 
     private loadingController: LoadingController, 
     private localStorageService: LocalStorageService, 
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     private router: Router) {}
   
   ionViewWillEnter() {
@@ -112,6 +114,29 @@ vitalsSearch() {
     console.log('Loading dismissed!');
   }
   
+  async signOutModal() { 
+    const confirm = await this.alertCtrl.create({  
+      header: 'Logging out ?',  
+      message: 'Are you sure you would like to logout ?',  
+      buttons: [  
+        {  
+          text: 'Cancel',  
+          role: 'cancel',  
+          handler: () => {  
+            console.log('Confirm Cancel');  
+          }  
+        },  
+        {  
+          text: 'Log-out', 
+          role: 'confirm',
+          handler: () => { 
+            this.signOut()
+          }  
+        }  
+      ]  
+    });  
+    await confirm.present();  
+  } 
   
   
   
@@ -125,7 +150,28 @@ vitalsSearch() {
 
   signOut() {
     this.localStorageService.logoutUser();
+    this.logoutToast()
     this.router.navigate([''])
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.retrieveAllVitals();
+      event.target.complete();
+    }, 1000);
+  }
+
+
+  async logoutToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'You have been logged out.',
+      position: 'top',
+      duration: 2000
+    });
+    toast.present();
   }
 }
 
