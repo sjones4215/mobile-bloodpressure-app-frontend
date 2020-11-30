@@ -1,27 +1,28 @@
 
 <ion-content>
 
-  
     <ion-card *ngFor="let vital of todaysVitals">
 
-        <ion-card-header><strong>{{vital.created_at | date: 'M/d/yy, h:mm a'}}</strong></ion-card-header>
+        <ion-card-header><strong>{{vital.past_date | date: 'M/d/yy, h:mm a'}}</strong></ion-card-header>
         <hr>
         <ion-card-content>{{vital.systolic}}/{{vital.diastolic}} -bp</ion-card-content>
         <ion-card-content>{{vital.hr}} -hr</ion-card-content>
         <ion-card-content>{{vital.oxygen}} -oxygen</ion-card-content>
         <ion-card-content>{{vital.temp}}&#8457;</ion-card-content>
         <ion-card-content>{{vital.weight}} lbs -weight</ion-card-content>
+        <ion-item-divider></ion-item-divider>
+        <ion-card-subtitle class="message">Add vitals for this day</ion-card-subtitle>
+        <ion-icon (click)="calendarAddModal()" class="add-vitals" size="large" name="add-circle-outline"></ion-icon>
 
     </ion-card>
-    
-    <ion-content *ngIf="todaysVitals.length === 0">
-        
-        <p>
-            No Vitals on this day
-        </p>
 
-    </ion-content> 
     
- 
 </ion-content>
 
+<ion-content *ngIf="todaysVitals.length === 0">
+    <ion-card-subtitle class="message">No vitals for this day</ion-card-subtitle>
+    <hr>
+    <div class="new">
+        <ion-icon (click)="calendarAddModal()" class="add-vitals" size="large" name="add-circle-outline"></ion-icon>
+    </div>
+</ion-content> 

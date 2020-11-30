@@ -9,6 +9,7 @@ import { VitalsService } from '../services/vitals.service';
 import { LoadingController } from '@ionic/angular';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
+import { CalendarAddComponent } from '../calendar-add/calendar-add.component';
 
 
 @Component({
@@ -64,12 +65,12 @@ vitalsSearch() {
       v.oxygen < 80 || 
       v.temp > 99.0 || v.temp < 96.5) {
         this.options.daysConfig.push({
-          date: new Date(v.created_at),
+          date: new Date(v.past_date),
           cssClass: 'abnormal-vitals',
         })
         } else {
         this.options.daysConfig.push({
-            date: new Date(v.created_at),
+            date: new Date(v.past_date),
             cssClass: 'my-cal',
             })
           }
@@ -173,6 +174,12 @@ vitalsSearch() {
     });
     toast.present();
   }
+
+  passDate(ev: any) {
+
+  }
+
+
 }
 
 

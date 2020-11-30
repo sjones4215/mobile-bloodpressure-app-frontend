@@ -9,9 +9,14 @@ export class Vitals {
     oxygen: number
     temp: number
     created_at: string
+    past_date: string 
 
 
     getCreatedAtDate() {
         return new Date(this.created_at)
+    }
+
+    getPastDate() {
+        return new Date(this.past_date)
     }
 }

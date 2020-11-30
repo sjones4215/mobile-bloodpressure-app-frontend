@@ -14,13 +14,20 @@ import { AddVitalsComponent } from './add-vitals/add-vitals.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInPage } from './sign-in/sign-in.page';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { CalendarAddComponent } from './calendar-add/calendar-add.component';
+
 
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, PopoverComponent, AddVitalsComponent],
+  declarations: [
+    AppComponent, 
+    PopoverComponent, 
+    AddVitalsComponent, 
+    CalendarAddComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule, 

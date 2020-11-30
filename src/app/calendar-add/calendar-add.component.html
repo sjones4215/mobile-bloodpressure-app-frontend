@@ -1,0 +1,52 @@
+<div class="modal-content">
+  <div class="icon">
+    <ion-icon class="exit" name="close-outline" (click)="dismiss();" size="large"></ion-icon>
+  </div>
+  <h3>Add your vitals and press submit</h3>
+ <div class="inputs"> 
+  <ion-list>
+    
+    <ion-item>
+      <ion-label>Systolic</ion-label>
+      <ion-input type="number" [(ngModel)]="newVitals.systolic"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Diastolic</ion-label>
+      <ion-input type="number" [(ngModel)]="newVitals.diastolic"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Heart rate</ion-label>
+      <ion-input type="number" [(ngModel)]="newVitals.hr"></ion-input>
+      </ion-item>
+   
+    <ion-item>
+      <ion-label>Oxygen level</ion-label>
+      <ion-input type="number" [(ngModel)]="newVitals.oxygen"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Temperature</ion-label>
+      <ion-input type="number" [(ngModel)]="newVitals.temp"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Weight</ion-label>
+      <ion-input type="number" [(ngModel)]="newVitals.weight"></ion-input>
+    </ion-item>
+  </ion-list>
+  
+  <ion-item >
+    <ion-datetime #mydt [(ngModel)]="newVitals.past_date" class="input" min="2019-12" max="2020-12"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-datetime [(ngModel)]="newVitals.past_date" class="input" displayFormat="h:mm a"></ion-datetime>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" (click)="saveVitals();dismiss();">Submit</ion-button>
+
+</div>
+</div>
+
+

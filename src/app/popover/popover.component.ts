@@ -1,6 +1,8 @@
+import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController, PopoverController } from '@ionic/angular';
 import { CalendarComponentTypeProperty, CalendarMonth, CalendarOptions } from 'ion2-calendar';
+import { CalendarAddComponent } from '../calendar-add/calendar-add.component';
 import { Vitals } from '../models/vitals';
 import { VitalsService } from '../services/vitals.service';
 
@@ -12,12 +14,15 @@ import { VitalsService } from '../services/vitals.service';
 export class PopoverComponent implements OnInit {
   vitals: Vitals[] = []
   todaysVitals: Vitals[] = []
-  date: Date = new Date()
+  pastDate: Date = new Date()
   dateSelected: Date
   message = []
 
 
-  constructor(private vitalService: VitalsService, private loadingController: LoadingController) { }
+  constructor(
+    private vitalService: VitalsService, 
+    private loadingController: LoadingController,
+    private modalController: ModalController) { }
 
   ngOnInit() {
     // this.presentLoadingWithOptions();
@@ -27,15 +32,19 @@ export class PopoverComponent implements OnInit {
 
 
 
+
 retrieveAllVitals() {
   this.vitalService.getAllVitals().subscribe( data => {
     this.vitals = data.vitals.map(x => Object.assign(new Vitals(), x))
     const endOfDateSelected = new Date(this.dateSelected.getTime());
     endOfDateSelected.setDate(endOfDateSelected.getDate() + 1);
     this.vitals.forEach(v => {
-      if(v.getCreatedAtDate().getTime() >= this.dateSelected.getTime() && v.getCreatedAtDate().getTime() <= endOfDateSelected.getTime()) {
+      // if(v.getCreatedAtDate().getTime() >= this.dateSelected.getTime() && v.getCreatedAtDate().getTime() <= endOfDateSelected.getTime()) {
+      //   this.todaysVitals.push(v)
+      //     }
+      if(v.getPastDate().getTime() >= this.dateSelected.getTime() && v.getPastDate().getTime() <= endOfDateSelected.getTime()) {
         this.todaysVitals.push(v)
-          }
+      }    
         })
       })
     }
@@ -52,4 +61,15 @@ retrieveAllVitals() {
   //   const { role, data } = await loading.onDidDismiss();
   //   console.log('Loading dismissed!');
   // }
+
+  async calendarAddModal() {
+    const modal = await this.modalController.create({
+      component: CalendarAddComponent,
+      cssClass: 'fullscreen',
+      componentProps: {
+        dateSelected: this.dateSelected.getTime()
+      }
+    });
+    return await modal.present();
+  }
 }

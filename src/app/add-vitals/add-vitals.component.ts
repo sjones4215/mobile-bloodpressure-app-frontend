@@ -1,4 +1,6 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Vitals } from '../models/vitals';
@@ -12,11 +14,20 @@ import { VitalsService } from '../services/vitals.service';
 })
 export class AddVitalsComponent implements OnInit {
   newVitals: Vitals = new Vitals();
+  timeString: string
+ 
   constructor(
     public modalCtrl: ModalController, 
     private vitalService: VitalsService, 
     private toastCtrl: ToastController
-  ) { }
+  ) { 
+    const format = 'MM/dd/yyyy';
+    const myDate = new Date()
+    const locale = 'en-US';
+    const formattedDate = formatDate(myDate, format, locale);
+    console.log(formattedDate)
+    this.newVitals.past_date = formattedDate
+  }
 
   ngOnInit() {}
 
