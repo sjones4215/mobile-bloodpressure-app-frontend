@@ -67,7 +67,7 @@ retrieveAllVitals() {
       component: CalendarAddComponent,
       cssClass: 'fullscreen',
       componentProps: {
-        dateSelected: this.dateSelected.getTime()
+        dateSelected: this.dateSelected
       }
     });
     return await modal.present();

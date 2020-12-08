@@ -11,30 +11,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./calendar-add.component.scss'],
 })
 export class CalendarAddComponent implements OnInit {
+
   dateSelected: Date
   newVitals: Vitals = new Vitals()
-  time: Date = new Date()
-  customPickerOptions: any
-  timeString: IonDatetime
-  formControl: FormControl
-
-
   @ViewChild('mydt') mydt: IonDatetime;
+  
   constructor(
     private modalCtrl: ModalController,
     private vitalService: VitalsService,
     private toastCtrl: ToastController,
-    private pickerCtrl: PickerController
   ) {} 
 
   ngOnInit() {
-    this.formatTimeString()
-    const format = 'MM/dd/yyyy';
-    const myDate = this.dateSelected
-    const locale = 'en-US';
-    const formattedDate = formatDate(myDate, format, locale);
-    console.log(formattedDate)
-    this.newVitals.past_date = formattedDate
+
+    // const locale = 'en-US';
+    // const formattedDate = formatDate(myDate, format, locale);
+    // console.log(formattedDate)
+    this.newVitals.past_date =  this.dateSelected.toISOString()
   }
 
   dismiss() {
@@ -47,6 +40,7 @@ export class CalendarAddComponent implements OnInit {
 
   saveVitals() {
     if (this.newVitals.past_date === '') {
+      this.newVitals.past_date 
       this.vitalService.createVitals(this.newVitals).subscribe()
       console.log(this.newVitals.past_date)
       this.presentToast()
@@ -65,8 +59,4 @@ export class CalendarAddComponent implements OnInit {
       });
       toast.present();
     }
-
-  formatTimeString() {
-    this.timeString
-  }
 }

@@ -9,8 +9,12 @@ import { UserService } from '../services/user.service';
 })
 export class SignUpPage implements OnInit {
   formGroup: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    first_name: new FormControl('', [Validators.required]),
+    last_name: new FormControl('', [Validators.required]),
+    nickname: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    password_confirmation: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email])
   })
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
@@ -24,7 +28,7 @@ export class SignUpPage implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
 }
 
-createUser() {
-  this.userService.signup(this.formGroup.value).subscribe()
-}
+  createUser() {
+    this.userService.signup(this.formGroup.value).subscribe()
+  }
 }

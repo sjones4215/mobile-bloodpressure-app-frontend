@@ -5,7 +5,19 @@
     
     <ion-card>
       <ion-card-content>
-        <h3>Please Sign-In</h3>
+        <h3>Please Sign-Up</h3>
+        <ion-item>
+          <ion-label>First name</ion-label>
+          <ion-input name="firstName" type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp" formControlName="first_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Last Name</ion-label>
+          <ion-input name="lastName" type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp" formControlName="last_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nickname</ion-label>
+          <ion-input name="nickname" type="text" class="form-control" id="nickname" aria-describedby="nicknameHelp" formControlName="nickname"></ion-input>
+        </ion-item>
         <ion-item>
           <ion-label>Email</ion-label>
           <ion-input name="email" type="text" class="email" id="email" aria-describedby="emailHelp" formControlName="email"></ion-input>
@@ -15,7 +27,12 @@
           <ion-input [type]="passwordType" clearOnEdit="false" class="password" id="password" aria-describedby="passwordHelp" formControlName="password"></ion-input>
           <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
         </ion-item>
-        <ion-card-subtitle>If you do not have an accound please <a routerLink="/sign-up">sign-up</a></ion-card-subtitle>
+        <ion-item>
+          <ion-label>Password confirmation</ion-label>
+          <ion-input [type]="passwordType" clearOnEdit="false" class="password_confirmation" id="password_confirmation" aria-describedby="passwordConfirmationHelp" formControlName="password_confirmation"></ion-input>
+          <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+        </ion-item>
+        <ion-card-subtitle>Already have an account ? <a routerLink="/">sign-in</a></ion-card-subtitle>
         <ion-button expand="block" color="primary" (click)="createUser()"> Submit </ion-button>
       </ion-card-content>
     </ion-card>

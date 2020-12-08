@@ -175,9 +175,6 @@ vitalsSearch() {
     toast.present();
   }
 
-  passDate(ev: any) {
-
-  }
 
 
 }

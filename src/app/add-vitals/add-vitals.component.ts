@@ -14,7 +14,7 @@ import { VitalsService } from '../services/vitals.service';
 })
 export class AddVitalsComponent implements OnInit {
   newVitals: Vitals = new Vitals();
-  timeString: string
+
  
   constructor(
     public modalCtrl: ModalController, 
